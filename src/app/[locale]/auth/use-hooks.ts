@@ -28,7 +28,8 @@ export const useHooks = () => {
   const [mode, setModeState] = useState<Mode>("login");
   const [form, setForm] = useState<AuthForm>(initialForm);
 
-  const t = getT("auth", usePathname().split("/")[1]);
+  const pathname = usePathname();
+  const t = getT("auth", pathname.split("/")[1]);
   const updateForm = (updates: Partial<AuthForm>) => {
     setForm((current) => ({ ...current, ...updates }));
   };
@@ -109,7 +110,7 @@ export const useHooks = () => {
     const { data, error } = await client.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `${origin}/auth/callback?next=/dashboard/account`,
+        redirectTo: `${origin}/api/auth/callback`,
       },
     });
 
