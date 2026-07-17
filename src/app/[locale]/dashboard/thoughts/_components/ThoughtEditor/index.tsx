@@ -3,6 +3,7 @@
 import { Edit, Save, Upload, X } from "lucide-react";
 
 import ThoughtCard from "#components/features/thoughts/ThoughtCard";
+import { MarkdownEditor } from "#components/ui/codemirror";
 import DropdownPopover from "#components/ui/DropdownPopover";
 import Image from "#components/ui/Image";
 import SegmentedToggle from "#components/ui/SegmentedToggle";
@@ -154,7 +155,7 @@ export default function ThoughtEditor({
               <X className="h-8 w-8" />
             </button>
           </HeaderSection>
-          <Stack y divide={true} className="flex-1 overflow-hidden *:p-4">
+          <Stack y divide={true} className="flex-1 overflow-hidden">
             {/* Main Editor Area */}
             <Stack
               y
@@ -165,15 +166,15 @@ export default function ThoughtEditor({
               })}
             >
               {/* Content and Upload Button Row */}
-              <Stack y className="flex-1 gap-2">
-                <textarea
+              <Stack y className="min-h-0 flex-1 gap-2">
+                <MarkdownEditor
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
                   value={form.content}
-                  onChange={(e) => updateForm({ content: e.target.value })}
+                  mode="live"
+                  onChange={(content) => updateForm({ content })}
                   placeholder="What's on your mind..."
-                  className="h-full w-full resize-none rounded-lg bg-transparent text-zinc-900 outline-none placeholder:text-zinc-400 dark:border-zinc-700 dark:text-zinc-100"
                 />
                 {form.images.length > 0 && (
                   <div className="mt-auto grid grid-cols-6 gap-2 md:grid-cols-8 lg:grid-cols-10">
@@ -217,7 +218,7 @@ export default function ThoughtEditor({
 
             {/* Preview */}
             <ThoughtCard
-              className={cn("overflow-y-auto", {
+              className={cn("overflow-y-auto p-4", {
                 "flex-1": viewMode === "preview",
                 hidden: viewMode === "edit",
                 "basis-1/2": viewMode === "split",

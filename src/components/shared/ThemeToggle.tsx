@@ -1,18 +1,18 @@
 "use client";
 import { Monitor, Moon, Sun } from "lucide-react";
 
-import { toggleTheme } from "#lib/client/theme";
+import { useTheme } from "#components/providers/theme";
 import { cn } from "#lib/shared/utils";
 
 export default function ThemeToggle({ className }: { className?: string }) {
-  const toggleHandler = () => toggleTheme();
+  const { toggleTheme } = useTheme();
 
   return (
     <button
       type="button"
-      onClick={toggleHandler}
+      onClick={() => toggleTheme()}
       className={cn(
-        "cursor-pointer rounded-full p-2 text-zinc-500 transition-all hover:bg-theme-hover hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100",
+        "cursor-pointer rounded-full p-2 text-(--text-muted) transition-all hover:bg-(--surface-hover) hover:text-(--text-primary)",
         className,
       )}
     >
