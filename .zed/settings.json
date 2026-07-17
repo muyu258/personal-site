@@ -1,42 +1,31 @@
 {
   "format_on_save": "on",
-  "lsp": {
-    "biome": {
-      "settings": {
-        "require_config_file": true
-      }
-    }
-  },
+  "language_servers": ["!stylelint-lsp", "!biome", "!eslint", "..."],
   "languages": {
     "JavaScript": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
+      "language_servers": ["oxlint"],
+      "formatter": { "language_server": { "name": "oxfmt" } }
     },
     "TypeScript": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
+      "formatter": { "language_server": { "name": "oxfmt" } }
     },
     "TSX": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
+      "formatter": { "language_server": { "name": "oxfmt" } }
     },
     "JSON": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxfmt" } }
     },
     "JSONC": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxfmt" } }
     },
     "CSS": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxfmt" } }
+    },
+    "SCSS": {
+      "formatter": { "language_server": { "name": "oxfmt" } }
+    },
+    "Markdown": {
+      "formatter": { "language_server": { "name": "oxfmt" } }
     }
   }
 }
